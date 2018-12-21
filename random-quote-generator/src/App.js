@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ViewQuotes from "./components/ViewQuotes";
+import QuotesList from "./components/QuotesList";
 import QuoteForm from "./components/QuoteForm";
 
 import "./App.css";
@@ -22,8 +22,8 @@ class App extends Component {
   render() {
     return (
       <div className="App-Container">
-        <header className="Homepage-Header">Random Note Generator App</header>
-        <ViewQuotes quotes={this.state.quotes} />
+        <header className="Homepage-Header">Random Quote Generator App</header>
+        <QuotesList quotes={this.state.quotes} />
         <QuoteForm />
       </div>
     );
