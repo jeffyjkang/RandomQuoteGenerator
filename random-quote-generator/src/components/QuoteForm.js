@@ -37,6 +37,7 @@ class QuoteForm extends Component {
             onChange={this.editQuoteHandler}
             placeholder="textBody"
             value={this.state.textBody} // must put this in to clear filed after submission
+            required
           />
           <div>Input author's name</div>
           <input
@@ -45,6 +46,7 @@ class QuoteForm extends Component {
             onChange={this.editQuoteHandler}
             placeholder="author"
             value={this.state.author} // must put this in to clear field after submission
+            required
           />
           <div>
             <button>Submit Quote</button>
