@@ -9,22 +9,27 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      quotes: [
-        {
-          id: 0,
-          textBody: "",
-          author: ""
-        }
-      ],
-      quote: ""
+      quotes: []
     };
   }
+  //submit quote event submission, currying
+  handleSubmitQuote = quote => {
+    // e.preventDefault();
+
+    const newQuote = {
+      textBody: quote.textBody,
+      author: quote.author
+    };
+    console.log("i was clicked", newQuote);
+    this.setState({ quotes: [...this.state.quotes, newQuote] });
+    console.log("this.state", this.state);
+  };
   render() {
     return (
       <div className="App-Container">
         <header className="Homepage-Header">Random Quote Generator App</header>
         <QuotesList quotes={this.state.quotes} />
-        <QuoteForm />
+        <QuoteForm handleSubmitQuote={this.handleSubmitQuote} />
       </div>
     );
   }

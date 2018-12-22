@@ -1,11 +1,11 @@
 import React from "react";
 
 const Quote = props => {
-  console.log(props);
+  // console.log(props);
   return (
     <div>
-      <div>{props.quote.textBody}</div>
-      <div>{props.quote.author}</div>
+      <div>Text body: {props.quote.textBody}</div>
+      <div>Author: {props.quote.author}</div>
     </div>
   );
 };
