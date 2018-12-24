@@ -14,18 +14,18 @@ class RandomQuote extends Component {
     this.randomQuoteGenerator();
   }
   randomQuoteGenerator = () => {
-    console.log(this.props.quotes);
+    // console.log(this.props.quotes);
     let randomQuote = this.props.quotes[
       Math.floor(Math.random() * this.props.quotes.length)
     ];
-    console.log("randomQuote", randomQuote);
+    // console.log("randomQuote", randomQuote);
     this.setState({
       currentQuote: randomQuote.textBody,
       currentAuthor: randomQuote.author
     });
   };
   render() {
-    console.log("this.props in random quote component", this.props);
+    // console.log("this.props in random quote component", this.props);
     return (
       <div>
         Random Quote:
