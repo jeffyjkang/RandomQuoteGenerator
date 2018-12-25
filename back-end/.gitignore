@@ -1,0 +1,2 @@
+# ignore node modules / Dependency directories
+node_modules/

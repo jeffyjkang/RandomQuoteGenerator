@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Register from "./Register";
 import Login from "./Login";
 
+import { Route } from "react-router-dom";
+
 const Authenticate = App =>
   class extends Component {
     constructor(props) {
@@ -34,13 +36,21 @@ const Authenticate = App =>
       // correct route instead of reload
       this.setState({ users: [...this.state.users, registerUser] });
       console.log("this.state in auth", this.state);
+      this.componentDidMount();
     };
     render() {
-      if (this.state.loggedIn) return <App />;
+      if (this.state.loggedIn) return <Route to="/" component={App} />;
       return (
         <div>
-          <Register registerNewUser={this.registerNewUser} />
-          <Login />
+          {/* <Register registerNewUser={this.registerNewUser} /> */}
+          <Route
+            to="/register"
+            render={props => (
+              <Register {...props} registerNewUser={this.registerNewUser} />
+            )}
+          />
+          {/* <Login /> */}
+          <Route to="/login" component={Login} />
         </div>
       );
     }
