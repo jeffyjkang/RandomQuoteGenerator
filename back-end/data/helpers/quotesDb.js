@@ -6,7 +6,7 @@ module.exports = dataAccessMethods = {
   },
   insert: function(quote) {
     return quotesDb("quotes").insert(quote);
-    // .then(ids => ({ id: ids[0] }));
+    //   .then(ids => ({ id: ids[0] }));
   },
   update: function(id, quote) {
     return quotesDb("quotes")
