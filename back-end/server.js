@@ -5,6 +5,7 @@ const db = require("./data/dbConfig");
 
 //import routes
 const quotes = require("./data/routes/quotes");
+const users = require("./data/routes/users");
 // const users = require("./data/routes/users");
 
 server.get("/", (req, res) => {
@@ -14,6 +15,7 @@ server.get("/", (req, res) => {
 server.use(express.json());
 
 server.use("/quotes", quotes);
+server.use("/users", users);
 
 // server.get("/quotes", (req, res) => {
 //   db("quotes").then(quotes => {

@@ -1,6 +1,6 @@
 const quotesDb = require("../dbConfig");
 
-module.exports = dataAccessMethods = {
+module.exports = {
   get: function() {
     return quotesDb("quotes");
   },
