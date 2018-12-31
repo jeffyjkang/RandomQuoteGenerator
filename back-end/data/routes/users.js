@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const usersDb = require("../helpers/usersDb");
+const bcrypt = require("bcryptjs");
+const auth = require("../authmiddleware/auth");
 
 router.get("/", async (req, res) => {
   try {
@@ -66,6 +68,25 @@ router.delete("/:id", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: "the user could not be deleted" });
   }
+});
+//users/register due to route
+router.post("/register", (req, res) => {
+  const user = req.body;
+  const hash = bcrypt.hashSync(user.passwordInput, 14);
+  user.passwordInput = hash;
+  // console.log(hash);
+  usersDb.insert(user).then(ids => {
+    console.log(usersDb);
+    usersDb
+      .get()
+      .where({ id: ids[0] })
+      .first()
+      .then(user => {
+        console.log("user:", user);
+        const token = auth.generateToken(user);
+        res.status(201).json(token);
+      });
+  });
 });
 
 module.exports = router;
