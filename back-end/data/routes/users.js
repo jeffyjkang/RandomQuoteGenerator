@@ -76,17 +76,41 @@ router.post("/register", (req, res) => {
   user.passwordInput = hash;
   // console.log(hash);
   usersDb.insert(user).then(ids => {
-    console.log(usersDb);
+    // console.log(usersDb);
     usersDb
       .get()
       .where({ id: ids[0] })
       .first()
       .then(user => {
-        console.log("user:", user);
+        // console.log("user:", user);
         const token = auth.generateToken(user);
         res.status(201).json(token);
       });
   });
+});
+//users/login due to route
+router.post("/login", (req, res) => {
+  const credentials = req.body;
+  // console.log(credentials);
+  usersDb
+    .get()
+    .where({ usernameInput: credentials.usernameInput })
+    .first()
+    .then(user => {
+      if (
+        user &&
+        bcrypt.compareSync(credentials.passwordInput, user.passwordInput)
+      ) {
+        const token = auth.generateToken(user);
+        // console.log("token:", token);
+        res.send(token);
+      } else {
+        return res.status(401).json({ error: "Incorrect credentials" });
+      }
+    })
+    .catch(error => {
+      res.status(500).json({ error: "error unable to get info" });
+    });
 });
 
 module.exports = router;
