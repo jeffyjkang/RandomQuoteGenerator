@@ -4,7 +4,7 @@ const usersDb = require("../helpers/usersDb");
 const bcrypt = require("bcryptjs");
 const auth = require("../authmiddleware/auth");
 
-router.get("/", async (req, res) => {
+router.get("/", auth.authorize, async (req, res) => {
   try {
     // const users = await usersDb.get();
     const users = await usersDb.get();
@@ -14,25 +14,25 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
-  const { usernameInput, passwordInput } = req.body;
-  if (!usernameInput) {
-    res.status(400).json({ error: "please input username" });
-  } else if (!passwordInput) {
-    res.status(400).json({ error: "please input password" });
-  }
-  try {
-    const user = await usersDb.insert({ usernameInput, passwordInput });
-    //usernameInput must be unique
-    res.status(201).json({ usernameInput, passwordInput });
-  } catch (error) {
-    res
-      .status(500)
-      .json({ error: "there was an error adding user to the database" });
-  }
-});
+// router.post("/", auth.authorize, async (req, res) => {
+//   const { usernameInput, passwordInput } = req.body;
+//   if (!usernameInput) {
+//     res.status(400).json({ error: "please input username" });
+//   } else if (!passwordInput) {
+//     res.status(400).json({ error: "please input password" });
+//   }
+//   try {
+//     const user = await usersDb.insert({ usernameInput, passwordInput });
+//     //usernameInput must be unique
+//     res.status(201).json({ usernameInput, passwordInput });
+//   } catch (error) {
+//     res
+//       .status(500)
+//       .json({ error: "there was an error adding user to the database" });
+//   }
+// });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", auth.authorize, async (req, res) => {
   const id = req.params.id;
   const { usernameInput, passwordInput } = req.body;
   if (!usernameInput) {
@@ -55,7 +55,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", auth.authorize, async (req, res) => {
   const id = req.params.id;
   try {
     user = await usersDb.remove(id);

@@ -21,7 +21,7 @@ class Login extends Component {
     localStorage.setItem("password", password);
     // window.location.reload();
     console.log("login this", this);
-    this.props.history.push("/");
+    // this.props.history.push("/");
   };
   render() {
     return (

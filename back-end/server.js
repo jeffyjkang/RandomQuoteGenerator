@@ -26,7 +26,7 @@ server.get("/", (req, res) => {
 server.use(express.json());
 server.use(helmet());
 server.use(morgan("dev"));
-server.use(cors({ origin: "http://localhost:9000", credentials: true }));
+server.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
 server.use("/quotes", quotes);
 server.use("/users", users);

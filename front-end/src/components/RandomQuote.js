@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { QuoteContainer, QuoteButton, QuoteFont } from "../ReusableStyles";
 //random quote qomponent
 class RandomQuote extends Component {
   constructor(props) {
@@ -28,10 +28,14 @@ class RandomQuote extends Component {
     // console.log("this.props in random quote component", this.props);
     return (
       <div>
-        Random Quote:
-        <div>Quote: {this.state.currentQuote}</div>
-        <div>Author: {this.state.currentAuthor}</div>
-        <button onClick={this.randomQuoteGenerator}>Next random Quote</button>
+        <QuoteContainer>
+          Random Quote:
+          <QuoteFont>Quote: {this.state.currentQuote}</QuoteFont>
+          <QuoteFont>Author: {this.state.currentAuthor}</QuoteFont>
+          <QuoteButton onClick={this.randomQuoteGenerator}>
+            Next random Quote
+          </QuoteButton>
+        </QuoteContainer>
       </div>
     );
   }

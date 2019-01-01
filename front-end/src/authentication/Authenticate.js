@@ -15,15 +15,22 @@ const Authenticate = App =>
     }
     componentDidMount() {
       if (localStorage.getItem("user")) {
-        console.log(
-          "localstorage.getItem('user')=",
-          localStorage.getItem("user")
-        );
+        // console.log(
+        //   "localstorage.getItem('user')=",
+        //   localStorage.getItem("user")
+        // );
         this.setState({ loggedIn: true });
       } else {
         this.setState({ loggedIn: false });
       }
     }
+    //logout function
+    logout = () => {
+      localStorage.removeItem("user");
+      localStorage.removeItem("password");
+      // history.push("");
+      this.setState({ loggedIn: false });
+    };
     //push new user from register component
     registerNewUser = newUser => {
       console.log("newUser", newUser.usernameInput, newUser.passwordInput);
@@ -39,18 +46,28 @@ const Authenticate = App =>
       this.componentDidMount();
     };
     render() {
-      if (this.state.loggedIn) return <Route to="/" component={App} />;
+      // if (this.state.loggedIn) return <Route to="/" component={App} />;
+      if (this.state.loggedIn)
+        return (
+          <Route
+            to="/"
+            render={props => <App {...props} logout={this.logout} />}
+          />
+        );
       return (
         <div>
           {/* <Register registerNewUser={this.registerNewUser} /> */}
           <Route
-            to="/register"
+            to="/signin"
             render={props => (
-              <Register {...props} registerNewUser={this.registerNewUser} />
+              <div>
+                <Register {...props} registerNewUser={this.registerNewUser} />
+                <Login />
+              </div>
             )}
           />
           {/* <Login /> */}
-          <Route to="/login" component={Login} />
+          {/* <Route to="/login" component={Login} /> */}
         </div>
       );
     }
