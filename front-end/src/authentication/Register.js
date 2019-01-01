@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 class Register extends Component {
   constructor(props) {
@@ -15,12 +16,19 @@ class Register extends Component {
   handleRegisterSubmitForm = properties => e => {
     e.preventDefault();
     console.log("this.props", properties);
-    const username = this.state.usernameInput;
-    const password = this.state.passwordInput;
-    localStorage.setItem("user", username);
-    localStorage.setItem("password", password);
+    // const username = this.state.usernameInput;
+    // const password = this.state.passwordInput;
+    // localStorage.setItem("user", username);
+    // localStorage.setItem("password", password);
     properties.registerNewUser(this.state);
-    // window.location.reload();
+    const user = {
+      usernameInput: this.state.usernameInput,
+      passwordInput: this.state.passwordInput
+    };
+    axios.post("http://localhost:9000/users/register", user).then(response => {
+      console.log(response);
+      localStorage.setItem("user", response.token);
+    });
   };
   render() {
     console.log("this.props in Register component", this.props);

@@ -50,9 +50,9 @@ class App extends Component {
     return (
       <div className="App-Container">
         <header className="Homepage-Header">Random Quote Generator App</header>
+        <RandomQuote quotes={this.state.quotes} />
         <QuotesList quotes={this.state.quotes} />
         <QuoteForm handleSubmitQuote={this.handleSubmitQuote} />
-        <RandomQuote quotes={this.state.quotes} />
         <button onClick={this.props.logout}>Log out</button>
       </div>
     );
