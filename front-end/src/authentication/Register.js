@@ -15,7 +15,7 @@ class Register extends Component {
   };
   handleRegisterSubmitForm = properties => e => {
     e.preventDefault();
-    console.log("this.props", properties);
+    console.log("this.props in register submit button", properties);
     // const username = this.state.usernameInput;
     // const password = this.state.passwordInput;
     // localStorage.setItem("user", username);
@@ -26,8 +26,8 @@ class Register extends Component {
       passwordInput: this.state.passwordInput
     };
     axios.post("http://localhost:9000/users/register", user).then(response => {
-      console.log(response);
-      localStorage.setItem("user", response.token);
+      // console.log("response in submit form", response.data);
+      localStorage.setItem("user", response.data);
     });
   };
   render() {
@@ -42,6 +42,7 @@ class Register extends Component {
             onChange={this.editRegisterHandler}
             placeholder="username"
             value={this.state.usernameInput}
+            required
           />
           <input
             type="password"
@@ -49,6 +50,7 @@ class Register extends Component {
             onChange={this.editRegisterHandler}
             placeholder="password"
             value={this.state.passwordInput}
+            required
           />
           <button>Register</button>
         </form>

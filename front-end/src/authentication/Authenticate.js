@@ -31,6 +31,10 @@ const Authenticate = App =>
       // history.push("");
       this.setState({ loggedIn: false });
     };
+    //login function
+    login = () => {
+      this.setState({ loggedIn: true });
+    };
     //push new user from register component
     registerNewUser = newUser => {
       console.log("newUser", newUser.usernameInput, newUser.passwordInput);
@@ -62,7 +66,7 @@ const Authenticate = App =>
             render={props => (
               <div>
                 <Register {...props} registerNewUser={this.registerNewUser} />
-                <Login />
+                <Login {...props} login={this.login} />
               </div>
             )}
           />
