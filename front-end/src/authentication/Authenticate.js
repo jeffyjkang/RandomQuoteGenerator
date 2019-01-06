@@ -3,6 +3,7 @@ import Register from "./Register";
 import Login from "./Login";
 
 import { Route } from "react-router-dom";
+import { SignContainer } from "../ReusableStyles";
 
 const Authenticate = App =>
   class extends Component {
@@ -37,7 +38,7 @@ const Authenticate = App =>
     };
     //push new user from register component
     registerNewUser = newUser => {
-      console.log("newUser", newUser.usernameInput, newUser.passwordInput);
+      // console.log("newUser", newUser.usernameInput, newUser.passwordInput);
       const registerUser = {
         username: newUser.usernameInput,
         password: newUser.passwordInput
@@ -46,11 +47,12 @@ const Authenticate = App =>
       // state of users gets reset to empty array, must use routes to
       // correct route instead of reload
       this.setState({ users: [...this.state.users, registerUser] });
-      console.log("this.state in auth", this.state);
+      // console.log("this.state in auth", this.state);
       this.componentDidMount();
     };
     render() {
       // if (this.state.loggedIn) return <Route to="/" component={App} />;
+      console.log("local storage", localStorage);
       if (this.state.loggedIn)
         return (
           <Route

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { FormContainer, SignContainer } from "../ReusableStyles";
 
 class Register extends Component {
   constructor(props) {
@@ -10,12 +11,12 @@ class Register extends Component {
     };
   }
   editRegisterHandler = e => {
-    console.log(e);
+    // console.log(e);
     this.setState({ [e.target.name]: e.target.value });
   };
   handleRegisterSubmitForm = properties => e => {
     e.preventDefault();
-    console.log("this.props in register submit button", properties);
+    // console.log("this.props in register submit button", properties);
     // const username = this.state.usernameInput;
     // const password = this.state.passwordInput;
     // localStorage.setItem("user", username);
@@ -31,11 +32,14 @@ class Register extends Component {
     });
   };
   render() {
-    console.log("this.props in Register component", this.props);
+    // console.log("this.props in Register component", this.props);
     return (
-      <div>
+      <SignContainer>
         <div>Register Component</div>
-        <form action="" onSubmit={this.handleRegisterSubmitForm(this.props)}>
+        <FormContainer
+          action=""
+          onSubmit={this.handleRegisterSubmitForm(this.props)}
+        >
           <input
             type="text"
             name="usernameInput"
@@ -53,8 +57,8 @@ class Register extends Component {
             required
           />
           <button>Register</button>
-        </form>
-      </div>
+        </FormContainer>
+      </SignContainer>
     );
   }
 }

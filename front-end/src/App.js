@@ -47,6 +47,7 @@ class App extends Component {
   };
   render() {
     console.log(this.props);
+    console.log("quotes", this.state.quotes);
     return (
       <div className="App-Container">
         <header className="Homepage-Header">Random Quote Generator App</header>

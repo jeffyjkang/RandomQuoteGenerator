@@ -11,6 +11,7 @@ class RandomQuote extends Component {
   }
   //on mounting component invoke randomQuoteGenerator to return random quote
   componentDidMount() {
+    console.log("quotes in reandom quote", this.props.quotes);
     this.randomQuoteGenerator();
   }
   randomQuoteGenerator = () => {

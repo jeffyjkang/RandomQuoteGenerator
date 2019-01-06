@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Axios from "axios";
+import { FormContainer, SignContainer } from "../ReusableStyles";
 
 class Login extends Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class Login extends Component {
     };
   }
   editLoginHandler = e => {
-    console.log(e);
+    // console.log(e);
     this.setState({ [e.target.name]: e.target.value });
   };
   handleLoginSubmitForm = e => {
@@ -33,9 +34,9 @@ class Login extends Component {
   };
   render() {
     return (
-      <div>
+      <SignContainer>
         <div>Login Component</div>
-        <form action="" onSubmit={this.handleLoginSubmitForm}>
+        <FormContainer action="" onSubmit={this.handleLoginSubmitForm}>
           <input
             type="text"
             name="usernameInput"
@@ -53,8 +54,8 @@ class Login extends Component {
             required
           />
           <button>Login</button>
-        </form>
-      </div>
+        </FormContainer>
+      </SignContainer>
     );
   }
 }
